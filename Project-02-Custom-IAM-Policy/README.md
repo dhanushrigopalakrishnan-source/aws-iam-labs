@@ -2,7 +2,7 @@
 
 ## Objective
 
-Create a customer managed IAM policy that allows a user to start, stop, reboot, and view EC2 instances, while preventing the user from terminating instances.
+Create a customer managed IAM policy that allows a user to start, stop, reboot, and view EC2 instances while preventing the user from terminating instances.
 
 ## AWS Services Used
 
@@ -11,19 +11,17 @@ Create a customer managed IAM policy that allows a user to start, stop, reboot, 
 
 ## IAM User
 
-`ec2-operator`
+`ec2operator`
 
 ## Custom Policy
 
-Policy name:
-
-`EC2StartStopRebootOnly`
+**Policy Name:** `EC2StartStopRebootOnly`
 
 ## Permissions
 
-| EC2 Action | Permission |
+| EC2 Action | Result |
 |---|---|
-| Describe instances | ✅ Allowed |
+| View EC2 instances | ✅ Allowed |
 | Start instance | ✅ Allowed |
 | Stop instance | ✅ Allowed |
 | Reboot instance | ✅ Allowed |
