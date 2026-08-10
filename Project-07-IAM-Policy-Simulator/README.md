@@ -201,12 +201,4 @@ Through this project, I learned:
 
 ````
 
-### Your final Project 7 structure
-
-```text
-Project-07-IAM-Policy-Simulator/
-├── README.md
-└── screenshots/
-    └── 01-policy-simulator-result.png
-````
 
