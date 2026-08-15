@@ -1,53 +1,30 @@
 
-````markdown
-# Project 8 – IAM Billing Access
+---
+
+# Project 8 — IAM Billing Access
+
+```markdown
+# Project 8: AWS IAM Billing Access
 
 ## Objective
 
-To create an IAM user with read-only access to AWS Billing information.
+Configure an IAM user with **read-only access to AWS Billing information** and verify access to the AWS Bills page.
+
+## Project Overview
+
+In this project, I configured an IAM user for finance-related AWS billing access.
+
+The AWS managed policy `AWSBillingReadOnlyAccess` was used to provide read-only access to billing information without granting administrative permissions.
 
 ## AWS Services Used
 
-- IAM
-- Billing and Cost Management
+* AWS IAM
+* AWS Billing and Cost Management
+* AWS Management Console
 
-## IAM User
+## IAM Configuration
 
-```text
-FinanceUser
-````
-
-## Permission
-
-The following AWS managed policy was attached:
-
-```text
-AWSBillingReadOnlyAccess
-```
-
-This policy allows the user to view billing information without giving administrative access to AWS resources.
-
-## Billing Access
-
-IAM access to Billing was enabled at the AWS account level.
-
-The `FinanceUser` was then used to access:
-
-**Billing and Cost Management → Bills**
-
-The Bills page was successfully accessible.
-
-## Result
-
-The `FinanceUser` successfully accessed the AWS Bills page and viewed the estimated bill summary.
+The IAM user was:
 
 ```text
 FinanceUser
-     ↓
-AWSBillingReadOnlyAccess
-     ↓
-Billing and Cost Management
-     ↓
-Bills → ✅ Accessible
-```
-
