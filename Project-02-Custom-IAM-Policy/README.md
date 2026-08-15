@@ -1,47 +1,47 @@
-# Project 2 – Custom IAM Policy
+
+---
+
+# Project 2 — Custom IAM Policy
+
+```markdown
+# Project 2: AWS Custom IAM Policy
 
 ## Objective
 
-Create a customer managed IAM policy that allows a user to start, stop, reboot, and view EC2 instances while preventing the user from terminating instances.
+Create a **custom IAM policy** to provide specific permissions for Amazon EC2 actions while following the Principle of Least Privilege.
+
+## Project Overview
+
+In this project, I created a customer-managed IAM policy with specific EC2 permissions.
+
+The policy was designed to allow required actions while preventing unauthorized actions such as terminating EC2 instances.
 
 ## AWS Services Used
 
-- AWS IAM
-- Amazon EC2
+* AWS IAM
+* Amazon EC2
+* AWS Management Console
 
-## IAM User
+## IAM Policy Configuration
 
-`ec2operator`
+The custom policy was configured to allow selected EC2 actions.
 
-## Custom Policy
+Example permissions included:
 
-**Policy Name:** `EC2StartStopRebootOnly`
-
-## Permissions
-
-| EC2 Action | Result |
+| EC2 Action | Permission |
 |---|---|
-| View EC2 instances | ✅ Allowed |
-| Start instance | ✅ Allowed |
-| Stop instance | ✅ Allowed |
-| Reboot instance | ✅ Allowed |
-| Terminate instance | ❌ Denied |
+| DescribeInstances | Allowed |
+| RebootInstances | Allowed |
+| TerminateInstances | Not Allowed |
 
-## Policy JSON
+## Architecture
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:StartInstances",
-        "ec2:StopInstances",
-        "ec2:RebootInstances",
-        "ec2:DescribeInstances"
-      ],
-      "Resource": "*"
-    }
-  ]
-}
+```text
+IAM User
+    │
+    ▼
+Custom IAM Policy
+    │
+    ├── DescribeInstances → Allowed
+    ├── RebootInstances   → Allowed
+    └── TerminateInstances → Denied
