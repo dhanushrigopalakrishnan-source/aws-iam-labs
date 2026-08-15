@@ -1,19 +1,14 @@
----
-
-# Project 5 — MFA Security
-
-```markdown
 # Project 5: AWS IAM MFA Security
 
 ## Objective
 
-Configure **Multi-Factor Authentication (MFA)** for an AWS IAM user to provide an additional layer of security for AWS account access.
+Configure **Multi-Factor Authentication (MFA)** for an AWS IAM user to improve account security.
 
 ## Project Overview
 
-In this project, I enabled a virtual MFA device for an IAM user and verified MFA-based authentication.
+In this project, I enabled a **Virtual MFA device** for an AWS IAM user.
 
-MFA requires an additional verification code in addition to the user's password.
+MFA provides an additional security layer by requiring both a password and an MFA verification code.
 
 ## AWS Services Used
 
@@ -22,7 +17,29 @@ MFA requires an additional verification code in addition to the user's password.
 
 ## MFA Configuration
 
-A virtual MFA device was configured for the IAM user:
+A Virtual MFA device was configured for the IAM user:
+
+**MFAUser**
+
+| Setting | Configuration |
+|---|---|
+| MFA Type | Virtual MFA Device |
+| IAM User | MFAUser |
+| MFA Status | Enabled |
+
+## Architecture
 
 ```text
-MFAUser
+IAM User
+    |
+    +----------------+
+    |                |
+    v                v
+ Password         MFA Code
+    |                |
+    +-------+--------+
+            |
+            v
+      AWS Authentication
+            |
+            v
