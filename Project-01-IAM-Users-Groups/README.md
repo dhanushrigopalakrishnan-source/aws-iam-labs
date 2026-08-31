@@ -19,71 +19,93 @@
    +----+----+         |              |
    |         |         |              |
   dev1      dev2      dba1         support1
-🛠️ Tech Stack & Services Used
-Identity & Access: AWS IAM
-Compute: Amazon EC2
-Database: Amazon RDS
-Monitoring: Amazon CloudWatch
-Security: IAM Groups, AWS Managed Policies, Least Privilege
-Tools: AWS Management Console
-📋 Key Implementation Highlights
-Created department-based IAM groups for Developers, DBAdmins, and Support.
-Assigned AWS managed policies based on each group's responsibilities.
-Added IAM users to the appropriate groups.
-Used group-based permissions instead of assigning unnecessary permissions directly to users.
-Applied the Principle of Least Privilege.
-Verified that an EC2 read-only user could view EC2 resources but could not terminate an instance.
-IAM Groups and Permissions
-IAM Group	Policy	Access
-Developers	AmazonEC2ReadOnlyAccess	EC2 Read Only
-DBAdmins	AmazonRDSFullAccess	RDS Full Access
-Support	CloudWatchReadOnlyAccess	CloudWatch Read Only
-IAM Users
-User	Group
-dev1	Developers
-dev2	Developers
-dba1	DBAdmins
-support1	Support
-🧪 Verification & Testing
+```
 
-The dev1 user was tested with the AmazonEC2ReadOnlyAccess policy.
+## 🛠️ Tech Stack & Services Used
 
-Test Results
-View EC2 resources       → ALLOWED
-Terminate EC2 instance   → DENIED
+- **Identity & Access:** AWS IAM
+- **Compute:** Amazon EC2
+- **Database:** Amazon RDS
+- **Monitoring:** Amazon CloudWatch
+- **Security:** IAM Groups, AWS Managed Policies, Least Privilege
+- **Tools:** AWS Management Console
 
-The termination attempt was denied because the user did not have the required ec2:TerminateInstances permission.
+## 📋 Key Implementation Highlights
 
-This verified that the IAM group provided the intended read-only access.
+- Created department-based IAM groups for Developers, DBAdmins, and Support.
+- Assigned AWS managed policies based on each group's responsibilities.
+- Added IAM users to the appropriate groups.
+- Used group-based permissions instead of assigning unnecessary permissions directly to users.
+- Applied the Principle of Least Privilege.
+- Verified that an EC2 read-only user could view EC2 resources but could not terminate an instance.
 
-📸 Screenshots
-IAM Users and Groups
+### IAM Groups and Permissions
 
-Developers Group Permissions
+| IAM Group  | Policy                      | Access               |
+|------------|------------------------------|-----------------------|
+| Developers | AmazonEC2ReadOnlyAccess      | EC2 Read Only         |
+| DBAdmins   | AmazonRDSFullAccess          | RDS Full Access       |
+| Support    | CloudWatchReadOnlyAccess     | CloudWatch Read Only  |
 
-EC2 Termination Denied
+### IAM Users
 
-🧹 Teardown & Resource Cleanup
+| User      | Group      |
+|-----------|------------|
+| dev1      | Developers |
+| dev2      | Developers |
+| dba1      | DBAdmins   |
+| support1  | Support    |
+
+## 🧪 Verification & Testing
+
+The `dev1` user was tested with the `AmazonEC2ReadOnlyAccess` policy.
+
+**Test Results**
+
+| Action                  | Result   |
+|--------------------------|----------|
+| View EC2 resources       | ALLOWED  |
+| Terminate EC2 instance   | DENIED   |
+
+The termination attempt was denied because the user did not have the required `ec2:TerminateInstances` permission. This verified that the IAM group provided the intended read-only access.
+
+## 📸 Screenshots
+
+**IAM Groups Created**
+![IAM Groups Created](assets/01-users-groups/01-iam-groups-created.png)
+`assets/01-users-groups/01-iam-groups-created.png`
+
+**IAM Users Created**
+![IAM Users Created](assets/01-users-groups/02-iam-users-created.png)
+`assets/01-users-groups/02-iam-users-created.png`
+
+**EC2 Permission Test (Termination Denied)**
+![IAM Permission Test](assets/01-users-groups/03-iam-permission-test.png)
+`assets/01-users-groups/03-iam-permission-test.png`
+
+## 🧹 Teardown & Resource Cleanup
 
 After completing the lab:
 
-Remove test IAM users that are no longer required.
-Remove IAM users from groups if the groups are no longer needed.
-Delete test IAM groups that were created specifically for this project.
-Review attached policies before deleting any IAM resources.
-Keep IAM resources that are required by other AWS projects.
+- Remove test IAM users that are no longer required.
+- Remove IAM users from groups if the groups are no longer needed.
+- Delete test IAM groups that were created specifically for this project.
+- Review attached policies before deleting any IAM resources.
+- Keep IAM resources that are required by other AWS projects.
 
-Security Note: Never upload IAM passwords, access keys, secret access keys, MFA secrets, recovery codes, or other credentials to GitHub.
+**Security Note:** Never upload IAM passwords, access keys, secret access keys, MFA secrets, recovery codes, or other credentials to GitHub.
 
-🎯 Learning Outcomes
-IAM Users
-IAM Groups
-AWS Managed Policies
-Group-based permissions
-Role-Based Access Control
-Principle of Least Privilege
-EC2 permission testing
-IAM security best practices
-✅ Project Result
+## 🎯 Learning Outcomes
+
+- IAM Users
+- IAM Groups
+- AWS Managed Policies
+- Group-based permissions
+- Role-Based Access Control
+- Principle of Least Privilege
+- EC2 permission testing
+- IAM security best practices
+
+## ✅ Project Result
 
 Successfully implemented department-based IAM access control and verified that permissions were restricted according to each user's assigned group.
