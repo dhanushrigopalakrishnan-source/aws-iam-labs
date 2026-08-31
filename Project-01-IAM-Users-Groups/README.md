@@ -71,17 +71,17 @@ The termination attempt was denied because the user did not have the required `e
 
 ## 📸 Screenshots
 
-**IAM Groups Created**
-![IAM Groups Created](assets/01-users-groups/01-iam-groups-created.png)
-`assets/01-users-groups/01-iam-groups-created.png`
+**IAM Users and Groups**
+![IAM Users and Groups](screenshots/01-iam-user-groups.png)
+`screenshots/01-iam-user-groups.png`
 
-**IAM Users Created**
-![IAM Users Created](assets/01-users-groups/02-iam-users-created.png)
-`assets/01-users-groups/02-iam-users-created.png`
+**Developers Group Permissions**
+![Developers Group Permissions](screenshots/02-developers-permissions.png)
+`screenshots/02-developers-permissions.png`
 
-**EC2 Permission Test (Termination Denied)**
-![IAM Permission Test](assets/01-users-groups/03-iam-permission-test.png)
-`assets/01-users-groups/03-iam-permission-test.png`
+**EC2 Termination Denied**
+![EC2 Termination Denied](screenshots/03-ec2-terminate-denied.png)
+`screenshots/03-ec2-terminate-denied.png`
 
 ## 🧹 Teardown & Resource Cleanup
 
