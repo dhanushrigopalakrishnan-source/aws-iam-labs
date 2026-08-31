@@ -1,142 +1,99 @@
-# Project 6 – IAM Password Policy
+# Project 6: IAM Password Policy
 
-## 📌 Objective
+> Demonstrates how to enforce a strong account-wide password policy in AWS IAM, ensuring all IAM users are required to use secure passwords and preventing password reuse.
 
-The objective of this project is to configure and test an AWS IAM password policy.
-
-The password policy is used to enforce strong password requirements for IAM users and reduce the risk of unauthorized access caused by weak or reused passwords.
-
----
-
-## 🔐 Password Policy
-
-The following custom password requirements were configured for IAM users:
-
-- Minimum password length: **14 characters**
-- At least one uppercase letter
-- At least one lowercase letter
-- At least one number
-- At least one non-alphanumeric character
-- Password reuse prevention for the previous **5 password changes**
-- Users are allowed to change their own passwords
-- Passwords do not expire
-
----
-
-## 🛠️ AWS Service Used
-
-| AWS Service | Purpose |
-|---|---|
-| IAM | Configure and enforce the password policy for IAM users |
-
----
-
-## ⚙️ Password Policy Configuration
-
-The password policy was configured from:
+## 🏗️ Architecture
 
 ```text
-AWS Console
-    ↓
-IAM
-    ↓
-Account Settings
-    ↓
-Password Policy
-
-The following settings were applied:
-
-Minimum password length: 14
-
-Uppercase letter: Required
-Lowercase letter: Required
-Number: Required
-Special character: Required
-
-Password expiration: Disabled
-Allow users to change their own password: Enabled
-Prevent password reuse: Enabled
-Previous passwords remembered: 5
-🧪 Testing
-
-A temporary IAM user named:
-
-PasswordPolicyTest
-
-was created to test the password policy.
-
-Test 1 – Weak Password
-
-A weak password was entered:
-
-password123
-
-AWS rejected the password because it did not meet the configured password requirements.
-
-The error confirmed that the password:
-
-Must be at least 14 characters long
-Must contain an uppercase letter
-Must contain a special character
-
-This confirmed that the password policy was being enforced.
-
-Test 2 – Strong Password
-
-A strong test password satisfying the configured requirements was entered.
-
-The password met the following requirements:
-
-Minimum 14 characters
-Uppercase letter
-Lowercase letters
-Number
-Special character
-
-AWS accepted the password and allowed the IAM user to be created successfully.
-
-🔄 Password Policy Flow
-IAM User
-    |
-    v
-Enter Password
-    |
-    v
+AWS Account
+     |
+     v
 IAM Password Policy
-    |
-    +---- Does not meet requirements ----> ❌ Rejected
-    |
-    +---- Meets requirements ------------> ✅ Accepted
-                                              |
-                                              v
-                                         IAM User Created
-✅ Result
+     |
+     +-- Minimum length: 14 characters
+     +-- Require uppercase letters
+     +-- Require lowercase letters
+     +-- Require at least one number
+     +-- Require at least one special character
+     +-- Prevent password reuse
+     |
+     v
+IAM Users
+     |
+     +-- Weak password  → REJECTED
+     +-- Strong password → ACCEPTED
+```
 
-The IAM password policy was successfully configured and tested.
+## 🛠️ Tech Stack & Services Used
 
-The project demonstrated that:
+- **Identity & Access:** AWS IAM (Account Password Policy)
+- **Security:** Password Complexity Rules, Password Reuse Prevention
+- **Tools:** AWS Management Console
 
-Weak passwords are rejected.
-Strong passwords are accepted.
-Password complexity requirements are enforced.
-Password reuse prevention is enabled.
-IAM users can change their own passwords.
-Final Result
-Strong Password Policy
-          ↓
-Weak Password → ❌ Rejected
-          ↓
-Strong Password → ✅ Accepted
-🔒 Security Benefits
+## 📋 Key Implementation Highlights
 
-A strong IAM password policy helps protect AWS accounts from password-based attacks.
+- Configured an account-wide IAM password policy requiring a minimum of 14 characters.
+- Enforced complexity rules requiring at least one uppercase letter, one lowercase letter, one number, and one special character.
+- Enabled password reuse prevention so users cannot reset their password back to a previously used one.
+- Tested the policy by attempting to set a weak password (short, no complexity) and confirming AWS rejected it.
+- Tested the policy again with a strong, compliant password and confirmed it was accepted.
 
-The configured policy improves security by:
+### Password Policy Configuration
 
-Increasing password length
-Requiring different character types
-Preventing immediate password reuse
-Allowing users to manage their own passwords
+| Setting                       | Value        |
+|----------------------------------|----------------|
+| Minimum password length            | 14 characters  |
+| Require uppercase letters           | ✔ Enabled     |
+| Require lowercase letters            | ✔ Enabled     |
+| Require at least one number           | ✔ Enabled     |
+| Require at least one special character | ✔ Enabled   |
+| Prevent password reuse                 | ✔ Enabled     |
 
-These controls help reduce the risk associated with weak or reused passwords.
+## 🧪 Verification & Testing
 
+Tested the password policy by attempting to set both a non-compliant and a compliant password for an IAM user.
+
+**Test Results**
+
+| Password Attempt                          | Result       |
+|------------------------------------------------|----------------|
+| Short password with no complexity (weak)          | ❌ REJECTED   |
+| 14+ character password with mixed case, number, symbol | ✔ ACCEPTED |
+| Reusing a previously set password                  | ❌ REJECTED   |
+
+This confirmed that the account-wide password policy was being enforced correctly, blocking weak or reused passwords and only allowing passwords that met all configured complexity requirements.
+
+## 📸 Screenshots
+
+**Custom Password Policy Configured**
+![Custom Policy Attached](screenshots/01-custom-policy-attached.png)
+
+
+**Weak Password Rejected**
+![Weak Password Rejected](screenshots/02-weak-password-rejected.png)
+
+
+**Strong Password Accepted**
+![Strong Password Accepted](screenshots/03-strong-password-accepted.png)
+
+
+## 🧹 Teardown & Resource Cleanup
+
+After completing the lab:
+
+- Review whether the strict password policy should remain enforced account-wide or be reverted if this was a test environment.
+- Remove any test IAM users created solely to validate password rejection/acceptance.
+- Document the final password policy settings for future reference before making further changes.
+
+**Security Note:** Never upload IAM passwords, access keys, secret access keys, MFA secrets, recovery codes, or other credentials to GitHub.
+
+## 🎯 Learning Outcomes
+
+- Account-wide IAM password policies
+- Password complexity requirements
+- Preventing password reuse
+- Strengthening account security through policy enforcement
+
+## ✅ Project Result
+
+Successfully configured and verified an AWS account password policy requiring strong, complex passwords and preventing reuse, confirming that weak passwords were rejected and only compliant passwords were accepted.
