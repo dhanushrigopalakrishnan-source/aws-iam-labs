@@ -63,21 +63,20 @@ This confirmed that the EC2 instance could read from S3 purely through the IAM r
 
 **IAM Role & Permissions**
 ![IAM Role Permission](screenshots/01-role-permission.png.png)
-`screenshots/01-role-permission.png.png`
+
 
 **S3 Bucket & Object**
 ![S3 Bucket Object](screenshots/02-s3-bucket-object.png)
-`screenshots/02-s3-bucket-object.png`
+
 
 **IAM Role Attached to EC2 Instance**
 ![EC2 Instance Role Attached](screenshots/03-ec2-instance-role-attached.png)
-`screenshots/03-ec2-instance-role-attached.png`
+
 
 **S3 Access Test (No Access Keys)**
 ![S3 Access Success](screenshots/04-s3-access-success.png.png)
-`screenshots/04-s3-access-success.png.png`
 
-> **Note:** `01-role-permission.png.png` and `04-s3-access-success.png.png` have a duplicated `.png.png` extension in the repo. Renaming them to `01-role-permission.png` and `04-s3-access-success.png` is recommended for consistency.
+
 
 ## 🧹 Teardown & Resource Cleanup
 
