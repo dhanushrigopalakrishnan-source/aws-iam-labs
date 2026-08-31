@@ -58,7 +58,7 @@ This confirmed that the Finance user's access was correctly scoped to billing-re
 ## 📸 Screenshots
 
 **Finance User Billing Access**
-![Finance User Billing Access](screenshots/01-finance-user-billing-access.png)
+![Finance User Billing Access](%20screenshots/01-finance-user-billing-access.png)
 
 
 ## 🧹 Teardown & Resource Cleanup
